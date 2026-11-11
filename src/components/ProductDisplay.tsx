@@ -86,5 +86,5 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: PharmacyColors.secondaryText,
     marginTop: 8,
-  },
+   },
 });
