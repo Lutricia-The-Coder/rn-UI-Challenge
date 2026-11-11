@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, Image, StyleSheet } from 'react-native';
 import PharmacyColors from '@/constants/pharmacy-colors';
 
 type ProductDisplayProps = {
@@ -16,26 +16,26 @@ export default function ProductDisplay({
   price,
   quantity,
 }: ProductDisplayProps) {
+  const isRelax = productName.includes('Relax');
+
   return (
     <View style={styles.container}>
-      <View style={styles.imagePlaceholder}>
-        <Text style={styles.imageText}>Product Image</Text>
+      <View style={styles.imageContainer}>
+        <Image
+          source={require('@/assets/images/xefag-products.webp')}
+          style={[
+            styles.productImage,
+            isRelax ? styles.relaxImage : styles.sleepImage,
+          ]}
+          resizeMode="stretch"
+        />
       </View>
 
       <View style={styles.details}>
         <Text style={styles.productName}>{productName}</Text>
-
-        <Text style={styles.description}>
-          {description}
-        </Text>
-
-        <Text style={styles.price}>
-          R {price.toFixed(2)}
-        </Text>
-
-        <Text style={styles.quantity}>
-          Quantity: {quantity}
-        </Text>
+        <Text style={styles.description}>{description}</Text>
+        <Text style={styles.price}>R {price.toFixed(2)}</Text>
+        <Text style={styles.quantity}>Quantity: {quantity}</Text>
       </View>
     </View>
   );
@@ -43,48 +43,53 @@ export default function ProductDisplay({
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: PharmacyColors.white,
-    borderRadius: 24,
-    padding: 20,
-    marginHorizontal: 18,
     alignItems: 'center',
-  },
-  imagePlaceholder: {
-    width: '100%',
-    height: 220,
-    borderRadius: 18,
-    backgroundColor: PharmacyColors.lightBackground,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  imageText: {
-    color: PharmacyColors.secondaryText,
-    fontSize: 16,
-  },
-  details: {
-    width: '100%',
+    paddingHorizontal: 20,
     marginTop: 20,
   },
+  imageContainer: {
+    width: 220,
+    height: 220,
+    overflow: 'hidden',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  productImage: {
+    width: 440,
+    height: 220,
+    maxWidth: undefined,
+  },
+  relaxImage: {
+    transform: [{ translateX: 110 }],
+  },
+  sleepImage: {
+    transform: [{ translateX: -110 }],
+  },
+  details: {
+    alignItems: 'center',
+    marginTop: 15,
+  },
   productName: {
-    fontSize: 23,
-    fontWeight: '800',
-    color: PharmacyColors.text,
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: PharmacyColors.black,
+    textAlign: 'center',
   },
   description: {
     fontSize: 14,
     color: PharmacyColors.secondaryText,
+    textAlign: 'center',
     marginTop: 8,
-    lineHeight: 21,
   },
   price: {
-    fontSize: 25,
-    fontWeight: '800',
+    fontSize: 22,
+    fontWeight: 'bold',
     color: PharmacyColors.black,
-    marginTop: 15,
+    marginTop: 12,
   },
   quantity: {
     fontSize: 14,
     color: PharmacyColors.secondaryText,
-    marginTop: 8,
-   },
+    marginTop: 5,
+  },
 });

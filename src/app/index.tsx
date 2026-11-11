@@ -1,98 +1,81 @@
-import * as Device from 'expo-device';
-import { Platform, StyleSheet } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { AnimatedIcon } from '@/components/animated-icon';
-import { HintRow } from '@/components/hint-row';
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { WebBadge } from '@/components/web-badge';
-import { BottomTabInset, MaxContentWidth, Spacing } from '@/constants/theme';
+import React, { useState } from 'react';
+import {View,Text, ScrollView,StyleSheet,Alert,SafeAreaView,} from 'react-native';
 
-function getDevMenuHint() {
-  if (Platform.OS === 'web') {
-    return <ThemedText type="small">use browser devtools</ThemedText>;
-  }
-  if (Device.isDevice) {
-    return (
-      <ThemedText type="small">
-        shake device or press <ThemedText type="code">m</ThemedText> in terminal
-      </ThemedText>
-    );
-  }
-  const shortcut = Platform.OS === 'android' ? 'cmd+m (or ctrl+m)' : 'cmd+d';
-  return (
-    <ThemedText type="small">
-      press <ThemedText type="code">{shortcut}</ThemedText>
-    </ThemedText>
-  );
-}
+import Header from '@/components/Header';
+import CategoryTabs from '@/components/CategoryTabs';
+import ProductDisplay from '@/components/ProductDisplay';
+import QuantitySelector from '@/components/QuantitySelector';
+import BuyButton from '@/components/BuyButton';
+
+import PharmacyColors from '@/constants/pharmacy-colors';
 
 export default function HomeScreen() {
+  const [category, setCategory] = useState('RELAX');
+  const [quantity, setQuantity] = useState(1);
+
+  const product = {
+    name: category === 'RELAX'
+      ? 'Xefag Relax 30 Dissolvable Wafers'
+      : 'Xefag Sleep 30 Dissolvable Wafers',
+    description: 'Convenient dissolvable wafers for your daily wellness routine.',
+    price: 199.99,
+  };
+
+  const handleBuy = () => {
+    Alert.alert(
+      'Added to cart',
+      `${quantity} item(s) added to your cart.`
+    );
+  };
+
   return (
-    <ThemedView style={styles.container}>
-      <SafeAreaView style={styles.safeArea}>
-        <ThemedView style={styles.heroSection}>
-          <AnimatedIcon />
-          <ThemedText type="title" style={styles.title}>
-            Welcome to&nbsp;Expo
-          </ThemedText>
-        </ThemedView>
+    <SafeAreaView style={styles.safeArea}>
+      <ScrollView contentContainerStyle={styles.scrollContent}>
+        <Header />
 
-        <ThemedText type="code" style={styles.code}>
-          get started
-        </ThemedText>
+        <Text style={styles.heading}>Find your balance</Text>
 
-        <ThemedView type="backgroundElement" style={styles.stepContainer}>
-          <HintRow
-            title="Try editing"
-            hint={<ThemedText type="code">src/app/index.tsx</ThemedText>}
-          />
-          <HintRow title="Dev tools" hint={getDevMenuHint()} />
-          <HintRow
-            title="Fresh start"
-            hint={<ThemedText type="code">npm run reset-project</ThemedText>}
-          />
-        </ThemedView>
+        <CategoryTabs
+          selectedCategory={category}
+          onSelectCategory={(value) => {
+            setCategory(value);
+            setQuantity(1);
+          }}
+        />
 
-        {Platform.OS === 'web' && <WebBadge />}
-      </SafeAreaView>
-    </ThemedView>
+        <ProductDisplay
+          productName={product.name}
+          description={product.description}
+          price={product.price}
+          quantity={quantity}
+        />
+
+        <QuantitySelector
+          quantity={quantity}
+          onChange={setQuantity}
+        />
+
+        <BuyButton onPress={handleBuy} />
+
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    flexDirection: 'row',
-  },
   safeArea: {
     flex: 1,
-    paddingHorizontal: Spacing.four,
-    alignItems: 'center',
-    gap: Spacing.three,
-    paddingBottom: BottomTabInset + Spacing.three,
-    maxWidth: MaxContentWidth,
+    backgroundColor: PharmacyColors.background,
   },
-  heroSection: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    flex: 1,
-    paddingHorizontal: Spacing.four,
-    gap: Spacing.four,
+  scrollContent: {
+    paddingBottom: 30,
   },
-  title: {
+  heading: {
+    fontSize: 25,
+    fontWeight: '800',
+    color: PharmacyColors.black,
     textAlign: 'center',
-  },
-  code: {
-    textTransform: 'uppercase',
-  },
-  stepContainer: {
-    gap: Spacing.three,
-    alignSelf: 'stretch',
-    paddingHorizontal: Spacing.three,
-    paddingVertical: Spacing.four,
-    borderRadius: Spacing.four,
+    marginTop: 15,
   },
 });
