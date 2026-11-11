@@ -1,6 +1,12 @@
 
 import React from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+} from 'react-native';
+
 import PharmacyColors from '@/constants/pharmacy-colors';
 
 type ProductDisplayProps = {
@@ -32,10 +38,22 @@ export default function ProductDisplay({
       </View>
 
       <View style={styles.details}>
-        <Text style={styles.productName}>{productName}</Text>
-        <Text style={styles.description}>{description}</Text>
-        <Text style={styles.price}>R {price.toFixed(2)}</Text>
-        <Text style={styles.quantity}>Quantity: {quantity}</Text>
+        <Text style={styles.productName}>
+          {productName}
+        </Text>
+
+        <View style={styles.priceContainer}>
+          <Text style={styles.currency}>R</Text>
+          <Text style={styles.price}>
+            {price.toFixed(2)}
+          </Text>
+        </View>
+
+        <View style={styles.quantityBadge}>
+          <Text style={styles.quantity}>
+            Quantity: {quantity}
+          </Text>
+        </View>
       </View>
     </View>
   );
@@ -44,12 +62,12 @@ export default function ProductDisplay({
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
-    paddingHorizontal: 20,
-    marginTop: 20,
+    paddingHorizontal: 24,
+    marginTop: 12,
   },
   imageContainer: {
-    width: 220,
-    height: 220,
+    width: 240,
+    height: 240,
     overflow: 'hidden',
     alignItems: 'center',
     justifyContent: 'center',
@@ -66,30 +84,43 @@ const styles = StyleSheet.create({
     transform: [{ translateX: -110 }],
   },
   details: {
+    width: '100%',
     alignItems: 'center',
-    marginTop: 15,
-  },
-  productName: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: PharmacyColors.black,
-    textAlign: 'center',
-  },
-  description: {
-    fontSize: 14,
-    color: PharmacyColors.secondaryText,
-    textAlign: 'center',
-    marginTop: 8,
-  },
-  price: {
-    fontSize: 22,
-    fontWeight: 'bold',
-    color: PharmacyColors.black,
     marginTop: 12,
   },
+  productName: {
+    fontSize: 21,
+    fontWeight: '800',
+    color: PharmacyColors.black,
+    textAlign: 'center',
+    lineHeight: 28,
+  },
+  priceContainer: {
+    flexDirection: 'row',
+    alignItems: 'baseline',
+    marginTop: 14,
+  },
+  currency: {
+    fontSize: 17,
+    fontWeight: '600',
+    color: PharmacyColors.black,
+    marginRight: 4,
+  },
+  price: {
+    fontSize: 27,
+    fontWeight: '900',
+    color: PharmacyColors.black,
+  },
+  quantityBadge: {
+    backgroundColor: PharmacyColors.white,
+    paddingHorizontal: 16,
+    paddingVertical: 7,
+    borderRadius: 20,
+    marginTop: 10,
+  },
   quantity: {
-    fontSize: 14,
-    color: PharmacyColors.secondaryText,
-    marginTop: 5,
+    fontSize: 12,
+    fontWeight: '600',
+    color: PharmacyColors.black,
   },
 });

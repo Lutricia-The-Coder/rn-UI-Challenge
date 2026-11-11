@@ -19,14 +19,15 @@ export default function Header() {
           style={styles.iconButton}
           onPress={() => console.log('Profile pressed')}
         >
-          <Text style={styles.icon}>♙</Text>
+          <Text style={styles.profileIcon}>♙</Text>
         </Pressable>
 
         <Pressable
           style={styles.iconButton}
           onPress={() => console.log('Cart pressed')}
         >
-          <Text style={styles.icon}>🛍</Text>
+          <Text style={styles.cartIcon}>🛍️</Text>
+          <View style={styles.cartDot} />
         </Pressable>
       </View>
     </View>
@@ -39,30 +40,45 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingHorizontal: 22,
-    paddingVertical: 15,
+    paddingHorizontal: 24,
+    paddingVertical: 18,
   },
   logo: {
-    fontSize: 30,
-    fontWeight: '800',
+    fontSize: 34,
+    fontWeight: '900',
     color: PharmacyColors.black,
-    letterSpacing: -1.5,
+    letterSpacing: -2,
   },
   actions: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 14,
+    gap: 12,
   },
   iconButton: {
-    width: 42,
-    height: 42,
+    width: 44,
+    height: 44,
     backgroundColor: PharmacyColors.white,
-    borderRadius: 21,
+    borderRadius: 22,
     justifyContent: 'center',
     alignItems: 'center',
+    position: 'relative',
   },
-  icon: {
-    fontSize: 21,
+  profileIcon: {
+    fontSize: 25,
     color: PharmacyColors.black,
+  },
+  cartIcon: {
+    fontSize: 19,
+  },
+  cartDot: {
+    position: 'absolute',
+    top: 8,
+    right: 9,
+    width: 7,
+    height: 7,
+    borderRadius: 4,
+    backgroundColor: PharmacyColors.primary,
+    borderWidth: 1,
+    borderColor: PharmacyColors.black,
   },
 });

@@ -1,6 +1,13 @@
 
 import React, { useState } from 'react';
-import {View,Text, ScrollView,StyleSheet,Alert,SafeAreaView,} from 'react-native';
+import {
+  View,
+  Text,
+  ScrollView,
+  StyleSheet,
+  Alert,
+  SafeAreaView,
+} from 'react-native';
 
 import Header from '@/components/Header';
 import CategoryTabs from '@/components/CategoryTabs';
@@ -15,26 +22,36 @@ export default function HomeScreen() {
   const [quantity, setQuantity] = useState(1);
 
   const product = {
-    name: category === 'RELAX'
-      ? 'Xefag Relax 30 Dissolvable Wafers'
-      : 'Xefag Sleep 30 Dissolvable Wafers',
-    description: 'Convenient dissolvable wafers for your daily wellness routine.',
+    name:
+      category === 'RELAX'
+        ? 'Xefag Relax 30 Dissolvable Wafers'
+        : 'Xefag Sleep 30 Dissolvable Wafers',
+    description:
+      'Convenient dissolvable wafers for your daily wellness routine.',
     price: 199.99,
   };
 
   const handleBuy = () => {
     Alert.alert(
       'Added to cart',
-      `${quantity} item(s) added to your cart.`
+      `${quantity} item(s) added to your cart.`,
     );
   };
 
   return (
     <SafeAreaView style={styles.safeArea}>
-      <ScrollView contentContainerStyle={styles.scrollContent}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={styles.scrollContent}
+      >
         <Header />
 
-        <Text style={styles.heading}>Find your balance</Text>
+        <View style={styles.intro}>
+          <Text style={styles.heading}>Find your balance</Text>
+          <Text style={styles.subtitle}>
+            Discover your everyday wellness essentials.
+          </Text>
+        </View>
 
         <CategoryTabs
           selectedCategory={category}
@@ -51,13 +68,14 @@ export default function HomeScreen() {
           quantity={quantity}
         />
 
-        <QuantitySelector
-          quantity={quantity}
-          onChange={setQuantity}
-        />
+        <View style={styles.purchaseSection}>
+          <QuantitySelector
+            quantity={quantity}
+            onChange={setQuantity}
+          />
 
-        <BuyButton onPress={handleBuy} />
-
+          <BuyButton onPress={handleBuy} />
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
@@ -69,13 +87,30 @@ const styles = StyleSheet.create({
     backgroundColor: PharmacyColors.background,
   },
   scrollContent: {
-    paddingBottom: 30,
+    flexGrow: 1,
+    paddingBottom: 35,
+  },
+  intro: {
+    alignItems: 'center',
+    marginTop: 22,
+    paddingHorizontal: 20,
   },
   heading: {
-    fontSize: 25,
+    fontSize: 28,
     fontWeight: '800',
     color: PharmacyColors.black,
     textAlign: 'center',
-    marginTop: 15,
+  },
+  subtitle: {
+    fontSize: 14,
+    color: PharmacyColors.black,
+    opacity: 0.7,
+    textAlign: 'center',
+    marginTop: 7,
+  },
+  purchaseSection: {
+    marginTop: 22,
+    paddingHorizontal: 24,
+    gap: 18,
   },
 });
