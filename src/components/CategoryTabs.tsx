@@ -8,9 +8,7 @@ type CategoryTabsProps = {
   onSelectCategory: (category: string) => void;
 };
 
-export default function CategoryTabs({
-  selectedCategory,
-  onSelectCategory,
+export default function CategoryTabs({selectedCategory,onSelectCategory,
 }: CategoryTabsProps) {
   const categories = ['RELAX', 'SLEEP'];
 
