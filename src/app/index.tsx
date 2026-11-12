@@ -1,20 +1,11 @@
 
 import React, { useState } from 'react';
-import {
-  View,
-  Text,
-  ScrollView,
-  StyleSheet,
-  Alert,
-  SafeAreaView,
-} from 'react-native';
-
+import {View,Text,ScrollView,StyleSheet,Alert,SafeAreaView} from 'react-native';
 import Header from '@/components/Header';
 import CategoryTabs from '@/components/CategoryTabs';
 import ProductDisplay from '@/components/ProductDisplay';
 import QuantitySelector from '@/components/QuantitySelector';
 import BuyButton from '@/components/BuyButton';
-
 import PharmacyColors from '@/constants/pharmacy-colors';
 
 export default function HomeScreen() {
@@ -24,11 +15,11 @@ export default function HomeScreen() {
   const product = {
     name:
       category === 'RELAX'
-        ? 'Xefag Relax 30 Dissolvable Wafers'
-        : 'Xefag Sleep 30 Dissolvable Wafers',
+        ? 'Relax 30 Dissolvable Wafers'
+        : 'Sleep 30 Dissolvable Wafers',
     description:
-      'Convenient dissolvable wafers for your daily wellness routine.',
-    price: 199.99,
+      '250 mg',
+    price: 25.50,
   };
 
   const handleBuy = () => {
@@ -46,13 +37,6 @@ export default function HomeScreen() {
       >
         <Header />
 
-        <View style={styles.intro}>
-          <Text style={styles.heading}>Find your balance</Text>
-          <Text style={styles.subtitle}>
-            Discover your everyday wellness essentials.
-          </Text>
-        </View>
-
         <CategoryTabs
           selectedCategory={category}
           onSelectCategory={(value) => {
@@ -61,21 +45,21 @@ export default function HomeScreen() {
           }}
         />
 
-        <ProductDisplay
-          productName={product.name}
-          description={product.description}
-          price={product.price}
-          quantity={quantity}
-        />
+     <ProductDisplay
+  productName={product.name}
+  description={product.description}
+  price={product.price}
 
-        <View style={styles.purchaseSection}>
-          <QuantitySelector
-            quantity={quantity}
-            onChange={setQuantity}
-          />
+>
+  <View style={styles.purchaseSection}>
+    <QuantitySelector
+      quantity={quantity}
+      onChange={setQuantity}
+    />
 
-          <BuyButton onPress={handleBuy} />
-        </View>
+    <BuyButton onPress={handleBuy} />
+  </View>
+</ProductDisplay>
       </ScrollView>
     </SafeAreaView>
   );
@@ -88,7 +72,7 @@ const styles = StyleSheet.create({
   },
   scrollContent: {
     flexGrow: 1,
-    paddingBottom: 35,
+    paddingBottom:20,
   },
   intro: {
     alignItems: 'center',
@@ -109,8 +93,8 @@ const styles = StyleSheet.create({
     marginTop: 7,
   },
   purchaseSection: {
-    marginTop: 22,
+    marginTop: 4,
     paddingHorizontal: 24,
-    gap: 18,
+    gap: 2,
   },
 });

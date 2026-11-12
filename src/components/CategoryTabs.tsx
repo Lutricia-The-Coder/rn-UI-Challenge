@@ -1,12 +1,4 @@
-
-import React from 'react';
-import {
-  View,
-  Text,
-  Pressable,
-  StyleSheet,
-} from 'react-native';
-
+import {View,Text, Pressable, StyleSheet,} from 'react-native';
 import PharmacyColors from '@/constants/pharmacy-colors';
 
 type CategoryTabsProps = {
@@ -55,21 +47,21 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    gap: 14,
-    marginTop: 10,
+    gap: 10,
+    marginTop: 6,
     marginBottom: 4,
     paddingHorizontal: 20,
   },
-  tab: {
-    width: 135,
-    paddingVertical: 14,
-    borderRadius: 30,
-    backgroundColor: PharmacyColors.white,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderWidth: 1,
-    borderColor: PharmacyColors.white,
-  },
+ tab: {
+  width: 120,
+  paddingVertical: 11,
+  borderRadius: 25,
+  backgroundColor: PharmacyColors.white,
+  alignItems: 'center',
+  justifyContent: 'center',
+  borderWidth: 1,
+  borderColor: PharmacyColors.white,
+},
   selectedTab: {
     backgroundColor: PharmacyColors.black,
     borderColor: PharmacyColors.black,

@@ -1,12 +1,5 @@
 
-import React from 'react';
-import {
-  View,
-  Text,
-  Pressable,
-  StyleSheet,
-} from 'react-native';
-
+import { View,Text,Pressable,StyleSheet,} from 'react-native';
 import PharmacyColors from '@/constants/pharmacy-colors';
 
 type QuantitySelectorProps = {
@@ -54,20 +47,19 @@ export default function QuantitySelector({
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    alignSelf: 'center',
-    width: 175,
-    height: 54,
-    paddingHorizontal: 7,
-    backgroundColor: PharmacyColors.white,
-    borderRadius: 30,
-    borderWidth: 1,
-    borderColor: PharmacyColors.border,
-    marginVertical: 15,
-  },
+container: {
+  flexDirection: 'row',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  alignSelf: 'flex-start',
+  width: 150,
+  height: 50,
+  paddingHorizontal: 7,
+  backgroundColor: PharmacyColors.lightBackground,
+  borderRadius: 25,
+  borderWidth: 0,
+  marginVertical: 12,
+},
   button: {
     width: 40,
     height: 40,

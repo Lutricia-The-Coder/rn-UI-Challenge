@@ -1,12 +1,5 @@
 
-import React from 'react';
-import {
-  View,
-  Text,
-  Pressable,
-  StyleSheet,
-} from 'react-native';
-
+import {View,Text, Pressable, StyleSheet,} from 'react-native';
 import PharmacyColors from '@/constants/pharmacy-colors';
 
 export default function Header() {
@@ -36,15 +29,15 @@ export default function Header() {
 
 const styles = StyleSheet.create({
   container: {
-    width: '100%',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingHorizontal: 24,
-    paddingVertical: 18,
-  },
+  width: '100%',
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  paddingHorizontal: 24,
+  paddingVertical: 12,
+},
   logo: {
-    fontSize: 34,
+    fontSize: 30,
     fontWeight: '900',
     color: PharmacyColors.black,
     letterSpacing: -2,
