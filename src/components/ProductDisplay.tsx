@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
     marginTop: 12,
   },
-description: {
+ description: {
   fontSize: 13,
   color: PharmacyColors.secondaryText,
   textAlign: 'left',
