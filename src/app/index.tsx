@@ -19,7 +19,7 @@ export default function HomeScreen() {
         : 'Sleep 30 Dissolvable Wafers',
     description:
          '250 mg',
-    price: 25.50,
+    price:25.50,
   };
 
   const handleBuy = () => {
