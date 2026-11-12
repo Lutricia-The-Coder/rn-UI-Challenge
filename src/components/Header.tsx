@@ -1,27 +1,62 @@
 
-import {View,Text, Pressable, StyleSheet,} from 'react-native';
+import React from 'react';
+import { Ionicons } from '@expo/vector-icons';
+import { View, Text, Pressable,StyleSheet,} from 'react-native';
+
 import PharmacyColors from '@/constants/pharmacy-colors';
 
 export default function Header() {
   return (
     <View style={styles.container}>
-      <Text style={styles.logo}>xefag</Text>
 
-      <View style={styles.actions}>
+      {/* Back button */}
+      <View style={styles.side}>
         <Pressable
-          style={styles.iconButton}
+          style={styles.backButton}
+          onPress={() => console.log('Back pressed')}
+        >
+          <Ionicons
+    name="chevron-back"
+    size={28}
+    color={PharmacyColors.black}
+/>
+        </Pressable>
+      </View>
+
+      {/* Center logo */}
+      <View style={styles.logoContainer}>
+        <Text style={styles.logoSymbol}>◌</Text>
+        <Text style={styles.logo}>xefag</Text>
+      </View>
+
+      {/* Right actions */}
+      <View style={[styles.side, styles.actions]}>
+
+        <Pressable
+          style={styles.profileButton}
           onPress={() => console.log('Profile pressed')}
         >
-          <Text style={styles.profileIcon}>♙</Text>
+        <Ionicons
+         name="person-outline"
+         size={21}
+         color={PharmacyColors.black}
+             />
         </Pressable>
 
         <Pressable
-          style={styles.iconButton}
+          style={styles.cartButton}
           onPress={() => console.log('Cart pressed')}
         >
-          <Text style={styles.cartIcon}>🛍️</Text>
-          <View style={styles.cartDot} />
+          <Ionicons
+          name="bag-handle-outline"
+          size={23}
+          color={PharmacyColors.black}
+           />
+          <View style={styles.cartBadge}>
+            <Text style={styles.badgeText}>3</Text>
+          </View>
         </Pressable>
+
       </View>
     </View>
   );
@@ -29,49 +64,78 @@ export default function Header() {
 
 const styles = StyleSheet.create({
   container: {
-   width: '100%',
-   flexDirection: 'row',
-   justifyContent: 'space-between',
-   alignItems: 'center',
-   paddingHorizontal: 24,
-   paddingVertical: 12,
-},
-  logo: {
-    fontSize: 30,
-    fontWeight: '900',
-    color: PharmacyColors.black,
-    letterSpacing: -2,
-  },
-  actions: {
+    width: '100%',
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 12,
+    justifyContent: 'space-between',
+    paddingHorizontal: 20,
+    paddingVertical: 18,
   },
-  iconButton: {
-    width: 44,
-    height: 44,
-    backgroundColor: PharmacyColors.white,
-    borderRadius: 22,
-    justifyContent: 'center',
+  side: {
+    flex: 1,
+    flexDirection: 'row',
     alignItems: 'center',
-    position: 'relative',
   },
-  profileIcon: {
-    fontSize: 25,
+  logoContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 5,
+  },
+  logoSymbol: {
+    fontSize: 34,
+    fontWeight: '900',
     color: PharmacyColors.black,
   },
-  cartIcon: {
-    fontSize: 19,
+  logo: {
+    fontSize: 27,
+    fontWeight: '900',
+    color: PharmacyColors.black,
+    letterSpacing: -1.5,
   },
-  cartDot: {
+  backButton: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: PharmacyColors.white,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  actions: {
+    justifyContent: 'flex-end',
+    gap: 10,
+  },
+  profileButton: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: '#E9A000',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  cartButton: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: PharmacyColors.white,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  cartBadge: {
     position: 'absolute',
-    top: 8,
-    right: 9,
-    width: 7,
-    height: 7,
-    borderRadius: 4,
-    backgroundColor: PharmacyColors.primary,
-    borderWidth: 1,
-    borderColor: PharmacyColors.black,
+    top: -3,
+    right: -2,
+    width: 15,
+    height: 15,
+    borderRadius: 8,
+    backgroundColor: PharmacyColors.black,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  badgeText: {
+    color: PharmacyColors.white,
+    fontSize: 9,
+    fontWeight: '800',
   },
 });
