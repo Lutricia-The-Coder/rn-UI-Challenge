@@ -65,18 +65,18 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
     marginTop: 12,
   },
-  imageContainer: {
-    width: 240,
-    height: 240,
-    overflow: 'hidden',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  productImage: {
-    width: 440,
-    height: 220,
-    maxWidth: undefined,
-  },
+imageContainer: {
+  width: 210,
+  height: 190,
+  overflow: 'hidden',
+  alignItems: 'center',
+  justifyContent: 'center',
+},
+productImage: {
+  width: 440,
+  height: 190,
+  maxWidth: undefined,
+},
   relaxImage: {
     transform: [{ translateX: 110 }],
   },

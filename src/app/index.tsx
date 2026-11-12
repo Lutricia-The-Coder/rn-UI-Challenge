@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
   },
   intro: {
     alignItems: 'center',
-    marginTop: 22,
+    marginTop: 10,
     paddingHorizontal: 20,
   },
   heading: {

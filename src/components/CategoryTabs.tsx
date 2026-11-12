@@ -56,8 +56,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     gap: 14,
-    marginTop: 22,
-    marginBottom: 12,
+    marginTop: 10,
+    marginBottom: 4,
     paddingHorizontal: 20,
   },
   tab: {
