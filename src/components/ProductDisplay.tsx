@@ -9,8 +9,7 @@ type ProductDisplayProps = {
 };
 
 export default function ProductDisplay({
-  productName,description, price, children,
-}: ProductDisplayProps) {
+  productName,description, price, children}: ProductDisplayProps) {
   const isRelax = productName.includes('Relax');
 
   return (
