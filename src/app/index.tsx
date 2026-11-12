@@ -18,7 +18,7 @@ export default function HomeScreen() {
         ? 'Relax 30 Dissolvable Wafers'
         : 'Sleep 30 Dissolvable Wafers',
     description:
-      '250 mg',
+         '250 mg',
     price: 25.50,
   };
 
