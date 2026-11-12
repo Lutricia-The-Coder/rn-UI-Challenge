@@ -58,15 +58,15 @@ const styles = StyleSheet.create({
    color: PharmacyColors.secondaryText,
    textAlign: 'left',
    lineHeight: 20,
-  marginTop: 8,
-  maxWidth: 280,
+   marginTop: 8,
+   maxWidth: 280,
 },
   imageContainer: {
     width: 280,
     height: 280,
     overflow: 'hidden',
     alignItems: 'center',
-  justifyContent: 'center',
+   justifyContent: 'center',
 },
 productImage: {
   width: 580,
