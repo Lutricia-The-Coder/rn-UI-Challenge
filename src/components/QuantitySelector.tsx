@@ -1,5 +1,6 @@
 
-import { View,Text,Pressable,StyleSheet,} from 'react-native';
+import React from 'react';
+import {View,Text, Pressable,StyleSheet,} from 'react-native';
 import PharmacyColors from '@/constants/pharmacy-colors';
 
 type QuantitySelectorProps = {
@@ -47,41 +48,46 @@ export default function QuantitySelector({
 }
 
 const styles = StyleSheet.create({
-container: {
-  flexDirection: 'row',
-  alignItems: 'center',
-  justifyContent: 'space-between',
-  alignSelf: 'flex-start',
-  width: 150,
-  height: 50,
-  paddingHorizontal: 7,
-  backgroundColor: PharmacyColors.lightBackground,
-  borderRadius: 25,
-  borderWidth: 0,
-  marginVertical: 12,
-},
-  button: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    backgroundColor: PharmacyColors.lightBackground,
-    justifyContent: 'center',
+  container: {
+    flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'space-between',
+    alignSelf: 'flex-end',
+    width: 160,
+    height: 54,
+    paddingHorizontal: 8,
+    backgroundColor: PharmacyColors.lightBackground,
+    borderRadius: 27,
+    marginVertical: 12,
   },
+
+ button: {
+  width: 38,
+  height: 38,
+  borderRadius: 19,
+  backgroundColor: PharmacyColors.black,
+  justifyContent: 'center',
+  alignItems: 'center',
+},
+
   pressed: {
-    opacity: 0.6,
+    opacity: 0.65,
+    transform: [{ scale: 0.94 }],
   },
+
   symbol: {
     fontSize: 23,
-    fontWeight: '600',
-    color: PharmacyColors.black,
+    fontWeight: '700',
+    color: PharmacyColors.white,
   },
+
   disabledSymbol: {
     color: PharmacyColors.muted,
   },
+
   quantity: {
     fontSize: 18,
     fontWeight: '800',
-    color: PharmacyColors.black,
+    color: PharmacyColors.white,
   },
 });

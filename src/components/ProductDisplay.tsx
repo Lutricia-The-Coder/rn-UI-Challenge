@@ -1,28 +1,58 @@
-import {View,Text,Image, StyleSheet,} from 'react-native';
+
+import React, { useState } from 'react';
+import {View, Text,Image,StyleSheet,Pressable,} from 'react-native';
 import PharmacyColors from '@/constants/pharmacy-colors';
+import QuantitySelector from '@/components/QuantitySelector';
 
 type ProductDisplayProps = {
   productName: string;
   description: string;
   price: number;
+  quantity: number;
+  onChange: (quantity: number) => void;
   children?: React.ReactNode;
 };
 
 export default function ProductDisplay({
-  productName,description, price, children}: ProductDisplayProps) {
-  const isRelax = productName.includes('Relax');
+  productName,description, price,quantity,onChange,children,
+}: ProductDisplayProps) {
+const isRelax = productName.toLowerCase().includes('relax');
+  const [selectedSize, setSelectedSize] = useState(30);
 
   return (
     <View style={styles.container}>
       <View style={styles.imageContainer}>
-        <Image
-          source={require('@/assets/images/xefag-products.webp')}
-          style={[
-            styles.productImage,
-            isRelax ? styles.relaxImage : styles.sleepImage,
-          ]}
-          resizeMode="stretch"
-        />
+<Image
+  source={
+    isRelax
+      ? require('@/assets/images/Relax.png')
+      : require('@/assets/images/Sleep.png')
+  }
+  style={styles.productImage}
+  resizeMode="contain"
+/>
+      </View>
+
+      {/* Size selection circles */}
+      <View style={styles.sizeOptions}>
+        {[30, 60, 90].map((size) => {
+          const selected = selectedSize === size;
+
+          return (
+            <Pressable
+              key={size}
+              onPress={() => setSelectedSize(size)}
+              style={[
+                styles.sizeCircle,
+                selected && styles.selectedCircle,
+              ]}
+            >
+              <Text style={styles.sizeText}>
+                {size}
+              </Text>
+            </Pressable>
+          );
+        })}
       </View>
 
       <View style={styles.details}>
@@ -34,14 +64,21 @@ export default function ProductDisplay({
           {description}
         </Text>
 
-        <View style={styles.priceContainer}>
-          <Text style={styles.currency}>$</Text>
-          <Text style={styles.price}>
-            {price.toFixed(2)}
-          </Text>
-          {children}
+        <View style={styles.priceQuantityRow}>
+          <View style={styles.priceContainer}>
+            <Text style={styles.currency}>$</Text>
+            <Text style={styles.price}>
+              {price.toFixed(2)}
+            </Text>
+          </View>
+
+          <QuantitySelector
+            quantity={quantity}
+            onChange={onChange}
+          />
         </View>
 
+        {children}
       </View>
     </View>
   );
@@ -49,45 +86,74 @@ export default function ProductDisplay({
 
 const styles = StyleSheet.create({
   container: {
+    width: '100%',
     alignItems: 'center',
-    paddingHorizontal: 24,
+    paddingHorizontal: 0,
     marginTop: 12,
   },
- description: {
-   fontSize: 13,
-   color: PharmacyColors.secondaryText,
-   textAlign: 'left',
-   lineHeight: 20,
-   marginTop: 8,
-   maxWidth: 280,
-},
+
   imageContainer: {
     width: 280,
-    height: 280,
+    height: 400,
     overflow: 'hidden',
     alignItems: 'center',
-   justifyContent: 'center',
-},
-productImage: {
-  width: 580,
-  height: 280,
-  maxWidth: undefined,
-},
-relaxImage: {
-  transform: [{ translateX: 145 }],
-},
-sleepImage: {
-  transform: [{ translateX: -145 }],
-},
-details: {
-  width: '100%',
-  alignItems: 'flex-start',
-  backgroundColor: PharmacyColors.white,
-  borderRadius: 30,
-  paddingHorizontal: 24,
-  paddingVertical: 26,
-  marginTop: 12,
-},
+    justifyContent: 'center',
+  },
+
+  productImage: {
+    width: 240,
+    height: 400,
+    maxWidth: undefined,
+  },
+
+  relaxImage: {
+    transform: [{ translateX:50 }],
+  },
+
+  sleepImage: {
+    transform: [{ translateX: -25 }],
+  },
+
+  sizeOptions: {
+    position: 'absolute',
+    right: 12,
+    top: 10,
+    gap: 12,
+    alignItems: 'center',
+  },
+
+  sizeCircle: {
+    width: 46,
+    height: 46,
+    borderRadius: 23,
+    backgroundColor: '#a1a1a1',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  selectedCircle: {
+    backgroundColor: PharmacyColors.black,
+  },
+
+  sizeText: {
+    fontSize: 15,
+    fontWeight: '600',
+    color: PharmacyColors.background,
+  },
+
+  details: {
+    width: '100%',
+    flex: 1,
+    alignItems: 'flex-start',
+    backgroundColor: PharmacyColors.white,
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
+    paddingHorizontal: 24,
+    paddingVertical: 26,
+    marginTop: 24,
+    borderRadius: 30,
+  },
+
   productName: {
     fontSize: 23,
     fontWeight: '800',
@@ -95,33 +161,38 @@ details: {
     textAlign: 'left',
     lineHeight: 30,
   },
-priceContainer: {
-  flexDirection: 'row',
-  alignItems: 'baseline',
-  marginTop: 18,
-  alignSelf: 'flex-start',
-},
+
+  description: {
+    fontSize: 13,
+    color: PharmacyColors.secondaryText,
+    textAlign: 'left',
+    lineHeight: 20,
+    marginTop: 8,
+    maxWidth: 280,
+  },
+
+  priceQuantityRow: {
+    width: '100%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+
+  priceContainer: {
+    flexDirection: 'row',
+    alignItems: 'baseline',
+    marginTop: 18,
+  },
+
 currency: {
-  fontSize: 18,
-  fontWeight: '700',
-  color: PharmacyColors.black,
-  marginRight: 4,
-},
-price: {
   fontSize: 32,
   fontWeight: '900',
   color: PharmacyColors.black,
+  marginRight: 4,
 },
-  quantityBadge: {
-    backgroundColor: PharmacyColors.white,
-    paddingHorizontal: 16,
-    paddingVertical: 7,
-    borderRadius: 20,
-    marginTop: 10,
-  },
-  quantity: {
-    fontSize: 12,
-    fontWeight: '600',
+  price: {
+    fontSize: 32,
+    fontWeight: '900',
     color: PharmacyColors.black,
   },
 });
