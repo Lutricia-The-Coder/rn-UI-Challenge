@@ -154,7 +154,20 @@ Add screenshots of your completed application here.
 - Add navigation between product pages.
 - Improve accessibility and interaction feedback.
 
+##  Download the Android App
 
+You can download and install the Android APK using the link below.
+
+**[ Download Pharmacy UI Challenge (APK)](https://drive.google.com/file/d/1oyUfRTedr1tQzSnrk7MZNdTDL59u4WxC/view?usp=drive_link)**
+
+### Installation
+1. Download the APK to your Android device.
+2. Open the downloaded APK file.
+3. If prompted, allow installation from this source in your Android settings.
+4. Tap **Install**.
+5. Open the app and enjoy!
+
+> **Note:** This is an Android APK. It is not available as an iOS installation file.
 
 ---
 
