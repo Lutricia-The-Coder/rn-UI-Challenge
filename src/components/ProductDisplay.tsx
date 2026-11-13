@@ -1,13 +1,8 @@
 
-import React, { useState, useEffect } from 'react';
-import {View,Text,Image,StyleSheet, Pressable,
-} from 'react-native';
-
+import React, { useState } from 'react';
+import {View, Text, Image, StyleSheet, Pressable, useWindowDimensions,} from 'react-native';
 import PharmacyColors from '@/constants/pharmacy-colors';
 import QuantitySelector from '@/components/QuantitySelector';
-
-const relaxImage = require('@/assets/images/Relax.png');
-const sleepImage = require('@/assets/images/Sleep.png');
 
 type ProductDisplayProps = {
   productName: string;
@@ -28,27 +23,23 @@ export default function ProductDisplay({
 }: ProductDisplayProps) {
   const isRelax = productName.toLowerCase().includes('relax');
   const [selectedSize, setSelectedSize] = useState(30);
+  const { width } = useWindowDimensions();
 
-  // Preload both product images
-useEffect(() => {
-  const relaxSource = Image.resolveAssetSource(relaxImage);
-  const sleepSource = Image.resolveAssetSource(sleepImage);
-
-  if (relaxSource?.uri) {
-    Image.prefetch(relaxSource.uri);
-  }
-
-  if (sleepSource?.uri) {
-    Image.prefetch(sleepSource.uri);
-  }
-}, []);
+  const imageWidth = Math.min(width * 0.65, 280);
 
   return (
     <View style={styles.container}>
       <View style={styles.imageContainer}>
         <Image
-          source={isRelax ? relaxImage : sleepImage}
-          style={styles.productImage}
+          source={
+            isRelax
+              ? require('@/assets/images/Relax.png')
+              : require('@/assets/images/Sleep.png')
+          }
+          style={[
+            styles.productImage,
+            { width: imageWidth },
+          ]}
           resizeMode="contain"
         />
       </View>
@@ -74,7 +65,6 @@ useEffect(() => {
 
       <View style={styles.details}>
         <Text style={styles.productName}>{productName}</Text>
-
         <Text style={styles.description}>{description}</Text>
 
         <View style={styles.priceQuantityRow}>
@@ -98,33 +88,23 @@ useEffect(() => {
 const styles = StyleSheet.create({
   container: {
     width: '100%',
+    flex: 1,
+    minHeight: 0,
     alignItems: 'center',
-    paddingHorizontal: 0,
-    marginTop: 12,
+    marginTop: 4,
   },
-
   imageContainer: {
-    width: 280,
-    height: 400,
+    width: '100%',
+    flex: 1,
+    minHeight: 100,
     overflow: 'hidden',
     alignItems: 'center',
     justifyContent: 'center',
   },
-
   productImage: {
-    width: 240,
-    height: 400,
+    height: '100%',
     maxWidth: undefined,
   },
-
-  relaxImage: {
-    transform: [{ translateX: 50 }],
-  },
-
-  sleepImage: {
-    transform: [{ translateX: -25 }],
-  },
-
   sizeOptions: {
     position: 'absolute',
     right: 12,
@@ -132,7 +112,6 @@ const styles = StyleSheet.create({
     gap: 12,
     alignItems: 'center',
   },
-
   sizeCircle: {
     width: 46,
     height: 46,
@@ -141,67 +120,54 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-
   selectedCircle: {
     backgroundColor: PharmacyColors.black,
   },
-
   sizeText: {
     fontSize: 15,
     fontWeight: '600',
     color: PharmacyColors.background,
   },
-
   details: {
     width: '100%',
-    flex: 1,
+    flexShrink: 0,
     alignItems: 'flex-start',
     backgroundColor: PharmacyColors.white,
-    borderTopLeftRadius: 30,
-    borderTopRightRadius: 30,
     paddingHorizontal: 24,
-    paddingVertical: 26,
-    marginTop: 24,
+    paddingVertical: 12,
+    marginTop: 8,
     borderRadius: 30,
   },
-
   productName: {
     fontSize: 23,
     fontWeight: '800',
     color: PharmacyColors.black,
-    textAlign: 'left',
     lineHeight: 30,
   },
-
   description: {
     fontSize: 13,
     color: PharmacyColors.secondaryText,
-    textAlign: 'left',
     lineHeight: 20,
-    marginTop: 8,
+    marginTop: 4,
     maxWidth: 280,
   },
-
   priceQuantityRow: {
     width: '100%',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
   },
-
   priceContainer: {
     flexDirection: 'row',
     alignItems: 'baseline',
-    marginTop: 18,
+    marginTop: 8,
   },
-
   currency: {
     fontSize: 32,
     fontWeight: '900',
     color: PharmacyColors.black,
     marginRight: 4,
   },
-
   price: {
     fontSize: 32,
     fontWeight: '900',

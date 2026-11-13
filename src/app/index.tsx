@@ -1,13 +1,6 @@
 
 import React, { useState } from 'react';
-import {
-  View,
-  ScrollView,
-  StyleSheet,
-  Alert,
-  SafeAreaView,
-} from 'react-native';
-
+import { View, StyleSheet, Alert, SafeAreaView,} from 'react-native';
 import Header from '@/components/Header';
 import CategoryTabs from '@/components/CategoryTabs';
 import ProductDisplay from '@/components/ProductDisplay';
@@ -36,10 +29,7 @@ export default function HomeScreen() {
 
   return (
     <SafeAreaView style={styles.safeArea}>
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={styles.scrollContent}
-      >
+      <View style={styles.container}>
         <Header />
 
         <CategoryTabs
@@ -61,8 +51,7 @@ export default function HomeScreen() {
             <BuyButton onPress={handleBuy} />
           </View>
         </ProductDisplay>
-
-      </ScrollView>
+      </View>
     </SafeAreaView>
   );
 }
@@ -72,15 +61,16 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: PharmacyColors.background,
   },
-
-  scrollContent: {
-    flexGrow: 1,
-    paddingBottom: 0,
+  container: {
+    flex: 1,
+    minHeight: 0,
+    width: '100%',
+    maxWidth: 560,
+    alignSelf: 'center',
+    backgroundColor: PharmacyColors.background,
   },
-
   purchaseSection: {
     width: '100%',
     alignItems: 'center',
-    marginTop: 4,
   },
 });
