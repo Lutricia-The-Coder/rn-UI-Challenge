@@ -1,174 +1,160 @@
+# Pharmacy UI Challenge 
 
-
-#  Xefag Pharmacy Mobile App
-
-A React Native UI implementation inspired by the Xefag Relax 30 Dissolvable Wafers pharmacy mobile app design.
-
-This project is part of the **React Native Task 1 – UI Challenge**, focused on recreating an existing UI design using React Native components, StyleSheet, reusable components and responsive layouts.
-
-##  Project Overview
-
-The goal of this project is to replicate the provided pharmacy mobile application design as accurately as possible while demonstrating an understanding of React Native fundamentals, component reusability, styling and responsiveness.
-
-The application features a modern product display screen with a yellow-themed interface, product information, quantity selection and a purchase button.
-
-## Objectives
-
-- Recreate the selected UI/UX design as closely as possible.
-- Demonstrate knowledge of React Native components.
-- Apply styling using React Native `StyleSheet`.
-- Create reusable components for a clean and maintainable codebase.
-- Implement interactive UI elements.
-- Ensure responsiveness across different mobile screen sizes.
+A modern, responsive pharmacy product page built with **React Native**, **Expo**, and **TypeScript**. This project focuses on recreating a clean and user-friendly shopping experience with a bright visual identity, interactive product categories, and a simple purchasing interface.
 
 ##  Features
 
-- Modern pharmacy product interface.
-- Custom header with branding and navigation icons.
-- Relax and Sleep category selection.
-- Product size selection (30, 60 and 90).
-- Product image and information display.
-- Product pricing display.
-- Interactive quantity selector.
-- Buy Now button.
-- Responsive layout.
-- Reusable React Native components.
+- **Product Categories:** Switch between Relax and Sleep products.
+- **Product Display:** View product images, names, descriptions, and prices.
+- **Product Size Selection:** Choose between 30, 60, and 90 units.
+- **Quantity Selector:** Increase or decrease the desired quantity.
+- **Shopping Cart Interaction:** Add products to the cart using the Buy Now button.
+- **Custom Branding:** Pharmacy-inspired yellow theme, logo, icons, and custom typography.
+- **Responsive Layout:** Designed to fit mobile devices and desktop browser screens.
+- **Custom Fonts:** Rosmatika and Sauce Grotesk Semi Bold.
 
-##  Technologies Used
+##  Built With
 
-- **React Native** – Mobile application development.
-- **JavaScript** – Application functionality.
-- **StyleSheet** – Component styling.
-- **Expo** – Development and testing (if using Expo).
+- [React Native](https://reactnative.dev/)
+- [Expo](https://expo.dev/)
+- [Expo Router](https://docs.expo.dev/router/introduction/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Expo Font](https://docs.expo.dev/versions/latest/sdk/font/)
+- [Expo Vector Icons](https://icons.expo.fyi/)
 
-## Project Structure
+##  Project Structure
 
 ```text
-Xefag-Pharmacy-App/
+project-root/
 │
 ├── assets/
-│   ├── images/
-│   └── icons/
+│   ├── fonts/
+│   │   ├── Rosmatika Regular.ttf
+│   │   └── SauceGrotesk-SemiBold.ttf
+│   │
+│   └── images/
+│       ├── logo.png
+│       ├── Relax.png
+│       ├── Sleep.png
+│       ├── Relax-icon.png
+│       ├── Sleep-icon.png
+│       └── Pharmacy-inspo.png
 │
-├── components/
-│   ├── Header.js
-│   ├── CategoryTabs.js
-│   ├── ProductDisplay.js
-│   ├── QuantitySelector.js
-│   └── BuyButton.js
+├── src/
+│   ├── app/
+│   │   ├── _layout.tsx
+│   │   └── index.tsx
+│   │
+│   ├── components/
+│   │   ├── Header.tsx
+│   │   ├── CategoryTabs.tsx
+│   │   ├── ProductDisplay.tsx
+│   │   ├── QuantitySelector.tsx
+│   │   └── BuyButton.tsx
+│   │
+│   └── constants/
+│       └── pharmacy-colors.ts
 │
-├── screens/
-│   └── HomeScreen.js
-│
-├── App.js
+├── app.json
 ├── package.json
 └── README.md
 ```
 
 ##  Getting Started
 
+Follow these instructions to run the project locally.
+
 ### Prerequisites
 
 Make sure you have the following installed:
 
-- Node.js
+- [Node.js](https://nodejs.org/)
 - npm
-- Expo Go or an Android/iOS emulator
-- Visual Studio Code
+- [Expo Go](https://expo.dev/go/) (if testing on a physical device)
 
 ### Installation
 
 1. Clone the repository:
 
-```bash
-git clone YOUR_GITHUB_REPOSITORY_URL
-```
+   ```bash
+   git clone rn-UI-Challenge
+   ```
 
 2. Navigate into the project directory:
 
-```bash
-cd rn-UI-Challenge
-```
+   ```bash
+   cd YOUR_PROJECT_FOLDER
+   ```
 
 3. Install dependencies:
-
-```bash
-npm install
-```
-
-4. Start the development server (if using Expo):
-
-```bash
-npx expo start
-```
-
-5. Open the application using Expo Go or an emulator.
-
-## Design Implementation
-
-The application recreates the selected Xefag pharmacy design, paying attention to:
-
-- Yellow and white colour combinations.
-- Rounded product information card.
-- Typography and text hierarchy.
-- Product positioning and proportions.
-- Spacing, alignment and padding.
-- Interactive buttons and controls.
-
-##  Application Build
-
-The completed application build will be uploaded to Google Drive.
-
-**Google Drive Link:** 
-
-## Learning Outcomes
-
-Through this challenge, I aim to demonstrate my understanding of:
-
-- React Native core components.
-- Flexbox layouts.
-- React Native StyleSheet.
-- Component creation and reusability.
-- Responsive UI development.
-- Basic user interaction.
-- Translating UI/UX designs into functional interfaces.
-
-
-
-## Get started
-
-1. Install dependencies
 
    ```bash
    npm install
    ```
 
-2. Start the app
+4. Start the Expo development server:
 
    ```bash
    npx expo start
    ```
 
-In the output, you'll find options to open the app in a
+### Running the Application
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+**On a physical device:**
+1. Install Expo Go on your phone.
+2. Run `npx expo start`.
+3. Scan the QR code displayed in your terminal or browser.
 
-You can start developing by editing the files inside the **src/app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+**On the web:**
 
 ```bash
-npm run reset-project
+npx expo start --web
 ```
 
-##  Author
+##  Design
 
-**Name:** Lutricia Ngomane
+The interface uses a bright yellow background, rounded white product information panel, and minimal controls to create a simple shopping experience.
 
-**Course:** React Native
+### Color Palette
+
+| Color          | Hex Code  | Usage                       |
+|----------------|-----------|-----------------------------|
+| Primary Yellow | `#F8D52D` | Main background and buttons |
+| White          | `#FFFFFF` | Product information panel   |
+| Dark           | `#222222` | Main text and icons         |
+| Secondary Grey | `#858585` | Supporting text             |
+
+### Typography
+
+- **Rosmatika:** Used for the brand logo.
+- **Sauce Grotesk Semi Bold:** Used for product headings.
+
+##  Screenshots
+
+Add screenshots of your completed application here.
+
+```markdown
+![Pharmacy App Screenshot](./assets/images/app-screenshot.png)
+```
+
+##  Functionality Notes
+
+- Selecting a different category updates the displayed product.
+- Changing categories resets the product quantity to 1.
+- Product sizes can be selected independently.
+- The quantity selector updates the selected purchase quantity.
+- Pressing **BUY NOW** displays an add-to-cart confirmation on supported native platforms.
+
+##  Future Improvements
+
+- Integrate a functional shopping cart.
+- Add product details and descriptions.
+- Connect to a product API.
+- Implement checkout and payment functionality.
+- Add navigation between product pages.
+- Improve accessibility and interaction feedback.
+
+
+
+---
 
