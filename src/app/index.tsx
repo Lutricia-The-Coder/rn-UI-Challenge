@@ -14,8 +14,8 @@ export default function HomeScreen() {
   const product = {
     name:
       category === 'Relax'
-        ? 'Relax 30 Dissolvable Wafers'
-        : 'Sleep 30 Dissolvable Wafers',
+        ? 'Relax 30 \nDissolvable Wafers'
+        : 'Sleep 30 \nDissolvable Wafers',
     description: '250 mg',
     price: 25.50,
   };

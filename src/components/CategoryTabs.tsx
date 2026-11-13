@@ -1,7 +1,5 @@
 
-import React from 'react';
-import { View, Text, Pressable, StyleSheet } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import {View,Text, Pressable,StyleSheet, Image,} from 'react-native';
 import PharmacyColors from '@/constants/pharmacy-colors';
 
 type CategoryTabsProps = {
@@ -14,8 +12,14 @@ export default function CategoryTabs({
   onSelectCategory,
 }: CategoryTabsProps) {
   const categories = [
-    { name: 'Relax', icon: 'leaf-outline' as const },
-    { name: 'Sleep', icon: 'moon-outline' as const },
+    {
+      name: 'Relax',
+      image: require('@/assets/images/Relax-icon.png'),
+    },
+    {
+      name: 'Sleep',
+      image: require('@/assets/images/Sleep-icon.png'),
+    },
   ];
 
   return (
@@ -32,11 +36,12 @@ export default function CategoryTabs({
               pressed && styles.pressedTab,
             ]}
           >
-            <Ionicons
-              name={category.icon}
-              size={18}
-              color={PharmacyColors.black}
+            <Image
+              source={category.image}
+              style={styles.categoryIcon}
+              resizeMode="contain"
             />
+
             <Text
               style={[
                 styles.tabText,
@@ -60,21 +65,30 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 2,
   },
+
   tab: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 7,
     paddingVertical: 5,
   },
+
+  categoryIcon: {
+    width: 30,
+    height: 40,
+  },
+
   pressedTab: {
     opacity: 0.65,
   },
+
   tabText: {
     fontSize: 13,
     fontWeight: '700',
     letterSpacing: 1,
     color: PharmacyColors.secondaryText,
   },
+
   selectedText: {
     color: PharmacyColors.black,
     fontWeight: '900',

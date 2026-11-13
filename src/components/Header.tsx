@@ -69,12 +69,14 @@ const styles = StyleSheet.create({
     width: 38,
     height: 38,
   },
-  logo: {
-    fontSize: 27,
-    fontWeight: '900',
-    color: PharmacyColors.black,
-    letterSpacing: -1.5,
-  },
+logo: {
+  fontSize: 32,
+  fontFamily: 'Rosmatika',
+  color: PharmacyColors.black,
+  lineHeight: 44,
+  paddingBottom: 0,
+  transform: [{ translateY: 4 }],
+},
   backButton: {
     width: 40,
     height: 40,

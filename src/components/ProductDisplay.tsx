@@ -23,9 +23,7 @@ export default function ProductDisplay({
 }: ProductDisplayProps) {
   const isRelax = productName.toLowerCase().includes('relax');
   const [selectedSize, setSelectedSize] = useState(30);
-  const { width } = useWindowDimensions();
-
-  const imageWidth = Math.min(width * 0.65, 280);
+const imageWidth = 260;
 
   return (
     <View style={styles.container}>
@@ -138,12 +136,13 @@ const styles = StyleSheet.create({
     marginTop: 8,
     borderRadius: 30,
   },
-  productName: {
-    fontSize: 23,
-    fontWeight: '800',
-    color: PharmacyColors.black,
-    lineHeight: 30,
-  },
+productName: {
+  fontSize: 23,
+  fontFamily: 'SauceGrotesk',
+  fontWeight: '600',
+  color: PharmacyColors.black,
+  lineHeight: 30,
+},
   description: {
     fontSize: 13,
     color: PharmacyColors.secondaryText,
