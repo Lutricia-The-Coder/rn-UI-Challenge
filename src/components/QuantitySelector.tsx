@@ -1,6 +1,13 @@
 
 import React from 'react';
-import {View,Text, Pressable,StyleSheet,} from 'react-native';
+import {
+  View,
+  Text,
+  Pressable,
+  StyleSheet,
+} from 'react-native';
+import { FontAwesome } from '@expo/vector-icons';
+
 import PharmacyColors from '@/constants/pharmacy-colors';
 
 type QuantitySelectorProps = {
@@ -22,14 +29,11 @@ export default function QuantitySelector({
         onPress={() => onChange(Math.max(1, quantity - 1))}
         disabled={quantity <= 1}
       >
-        <Text
-          style={[
-            styles.symbol,
-            quantity <= 1 && styles.disabledSymbol,
-          ]}
-        >
-          −
-        </Text>
+       <FontAwesome
+  name="minus-square-o"
+  size={22}
+  color={PharmacyColors.primary}
+/>
       </Pressable>
 
       <Text style={styles.quantity}>{quantity}</Text>
@@ -41,7 +45,11 @@ export default function QuantitySelector({
         ]}
         onPress={() => onChange(quantity + 1)}
       >
-        <Text style={styles.symbol}>+</Text>
+        <FontAwesome
+          name="plus-square-o"
+          size={22}
+          color={PharmacyColors.primary}
+        />
       </Pressable>
     </View>
   );
@@ -52,42 +60,31 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    alignSelf: 'flex-end',
+    alignSelf: 'flex-start',
     width: 160,
     height: 54,
-    paddingHorizontal: 8,
+    paddingHorizontal: 7,
     backgroundColor: PharmacyColors.lightBackground,
     borderRadius: 27,
     marginVertical: 12,
   },
 
- button: {
-  width: 38,
-  height: 38,
-  borderRadius: 19,
-  backgroundColor: PharmacyColors.black,
-  justifyContent: 'center',
-  alignItems: 'center',
-},
+  button: {
+    width: 38,
+    height: 38,
+    borderRadius: 19,
+    backgroundColor: PharmacyColors.black,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 
   pressed: {
-    opacity: 0.65,
-    transform: [{ scale: 0.94 }],
-  },
-
-  symbol: {
-    fontSize: 23,
-    fontWeight: '700',
-    color: PharmacyColors.white,
-  },
-
-  disabledSymbol: {
-    color: PharmacyColors.muted,
+    opacity: 0.6,
   },
 
   quantity: {
     fontSize: 18,
     fontWeight: '800',
-    color: PharmacyColors.white,
+    color: PharmacyColors.black,
   },
 });

@@ -1,8 +1,13 @@
 
-import React, { useState } from 'react';
-import {View, Text,Image,StyleSheet,Pressable,} from 'react-native';
+import React, { useState, useEffect } from 'react';
+import {View,Text,Image,StyleSheet, Pressable,
+} from 'react-native';
+
 import PharmacyColors from '@/constants/pharmacy-colors';
 import QuantitySelector from '@/components/QuantitySelector';
+
+const relaxImage = require('@/assets/images/Relax.png');
+const sleepImage = require('@/assets/images/Sleep.png');
 
 type ProductDisplayProps = {
   productName: string;
@@ -14,26 +19,40 @@ type ProductDisplayProps = {
 };
 
 export default function ProductDisplay({
-  productName,description, price,quantity,onChange,children,
+  productName,
+  description,
+  price,
+  quantity,
+  onChange,
+  children,
 }: ProductDisplayProps) {
-const isRelax = productName.toLowerCase().includes('relax');
+  const isRelax = productName.toLowerCase().includes('relax');
   const [selectedSize, setSelectedSize] = useState(30);
+
+  // Preload both product images
+useEffect(() => {
+  const relaxSource = Image.resolveAssetSource(relaxImage);
+  const sleepSource = Image.resolveAssetSource(sleepImage);
+
+  if (relaxSource?.uri) {
+    Image.prefetch(relaxSource.uri);
+  }
+
+  if (sleepSource?.uri) {
+    Image.prefetch(sleepSource.uri);
+  }
+}, []);
 
   return (
     <View style={styles.container}>
       <View style={styles.imageContainer}>
-<Image
-  source={
-    isRelax
-      ? require('@/assets/images/Relax.png')
-      : require('@/assets/images/Sleep.png')
-  }
-  style={styles.productImage}
-  resizeMode="contain"
-/>
+        <Image
+          source={isRelax ? relaxImage : sleepImage}
+          style={styles.productImage}
+          resizeMode="contain"
+        />
       </View>
 
-      {/* Size selection circles */}
       <View style={styles.sizeOptions}>
         {[30, 60, 90].map((size) => {
           const selected = selectedSize === size;
@@ -47,29 +66,21 @@ const isRelax = productName.toLowerCase().includes('relax');
                 selected && styles.selectedCircle,
               ]}
             >
-              <Text style={styles.sizeText}>
-                {size}
-              </Text>
+              <Text style={styles.sizeText}>{size}</Text>
             </Pressable>
           );
         })}
       </View>
 
       <View style={styles.details}>
-        <Text style={styles.productName}>
-          {productName}
-        </Text>
+        <Text style={styles.productName}>{productName}</Text>
 
-        <Text style={styles.description}>
-          {description}
-        </Text>
+        <Text style={styles.description}>{description}</Text>
 
         <View style={styles.priceQuantityRow}>
           <View style={styles.priceContainer}>
             <Text style={styles.currency}>$</Text>
-            <Text style={styles.price}>
-              {price.toFixed(2)}
-            </Text>
+            <Text style={styles.price}>{price.toFixed(2)}</Text>
           </View>
 
           <QuantitySelector
@@ -107,7 +118,7 @@ const styles = StyleSheet.create({
   },
 
   relaxImage: {
-    transform: [{ translateX:50 }],
+    transform: [{ translateX: 50 }],
   },
 
   sleepImage: {
@@ -184,12 +195,13 @@ const styles = StyleSheet.create({
     marginTop: 18,
   },
 
-currency: {
-  fontSize: 32,
-  fontWeight: '900',
-  color: PharmacyColors.black,
-  marginRight: 4,
-},
+  currency: {
+    fontSize: 32,
+    fontWeight: '900',
+    color: PharmacyColors.black,
+    marginRight: 4,
+  },
+
   price: {
     fontSize: 32,
     fontWeight: '900',
