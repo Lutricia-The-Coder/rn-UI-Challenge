@@ -1,4 +1,3 @@
-
 {
   "expo": {
     "name": "rn-UI-Challenge",
@@ -47,7 +46,7 @@
         }
       },
       "eas": {
-        "projectId": "c84a92f2-3409-437b-aeed-b0ac0f3c5c9e"
+        "projectId": "c84a92f2-3409-437b-aeed-b0ac0f3c5c9c"
       }
     },
     "runtimeVersion": {
@@ -55,6 +54,7 @@
     },
     "updates": {
       "url": "https://u.expo.dev/c84a92f2-3409-437b-aeed-b0ac0f3c5c9c"
-    }
+    },
+    "owner": "lutricia"
   }
 }
